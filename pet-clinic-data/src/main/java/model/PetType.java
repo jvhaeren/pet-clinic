@@ -1,4 +1,4 @@
-package com.julienvanhaeren.petclinic.model;
+package model;
 
 public class  PetType {
 
