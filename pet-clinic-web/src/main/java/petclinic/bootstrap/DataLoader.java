@@ -3,11 +3,14 @@ package petclinic.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import petclinic.model.Owner;
+import petclinic.model.Pet;
 import petclinic.model.PetType;
 import petclinic.model.Vet;
 import petclinic.services.OwnerService;
 import petclinic.services.PetTypeService;
 import petclinic.services.VetService;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -37,12 +40,32 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Sean");
         owner1.setLastName("Penn");
+        owner1.setAddress("Van Nelleweg 1");
+        owner1.setCity("Rotterdam");
+        owner1.setTelephone("123123123");
+
+        Pet seansPet = new Pet();
+        seansPet.setPetType(savedDogType);
+        seansPet.setOwner(owner1);
+        seansPet.setBirthDate(LocalDate.now());
+        seansPet.setName("Max");
+        owner1.getPets().add(seansPet);
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Patrick");
         owner2.setLastName("Swayze");
+        owner2.setAddress("Straatweg 256");
+        owner2.setCity("Breukelen");
+        owner2.setTelephone("234234234");
+
+        Pet patsCat = new Pet();
+        patsCat.setPetType(savedCatType);
+        patsCat.setOwner(owner2);
+        patsCat.setBirthDate(LocalDate.now());
+        patsCat.setName("Poesie");
+        owner2.getPets().add(patsCat);
 
         ownerService.save(owner2);
 
